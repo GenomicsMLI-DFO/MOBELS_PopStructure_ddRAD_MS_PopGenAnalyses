@@ -1,0 +1,17 @@
+
+
+--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01c_MissingData/populations.92115snps.679ind.all.recode.vcf --depth
+
+
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01c_MissingData/populations.92115snps.679ind.all.recode.vcf
+	--depth
+
+After filtering, kept 679 out of 679 Individuals
+Outputting Mean Depth by Individual
+After filtering, kept 92379 out of a possible 92379 Sites
+Run Time = 7.00 seconds

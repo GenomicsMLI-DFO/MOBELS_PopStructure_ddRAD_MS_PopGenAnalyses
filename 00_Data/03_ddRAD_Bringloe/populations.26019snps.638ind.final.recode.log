@@ -1,0 +1,37 @@
+PLINK v1.90b6.24 64-bit (6 Jun 2021)
+Options in effect:
+  --make-bed
+  --out ./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode
+  --tfam ./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode.tfam
+  --tped ./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode.tped
+
+Hostname: genyoda-Precision-7920-Tower
+Working directory: /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global
+Start time: Mon Jul 17 20:40:59 2023
+
+Random number seed: 1689640859
+772648 MB RAM detected; reserving 386324 MB for main workspace.
+Processing .tped file.
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode-temporary.bed
++
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode-temporary.bim
++
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode-temporary.fam
+written.
+26019 variants loaded from .bim file.
+638 people (0 males, 0 females, 638 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 638 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.975421.
+26019 variants and 638 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode.bed +
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode.bim +
+./00_Data/03b_ddRAD_Bringloe/populations.26019snps.638ind.final.recode.fam ...
+done.
+
+End time: Mon Jul 17 20:40:59 2023

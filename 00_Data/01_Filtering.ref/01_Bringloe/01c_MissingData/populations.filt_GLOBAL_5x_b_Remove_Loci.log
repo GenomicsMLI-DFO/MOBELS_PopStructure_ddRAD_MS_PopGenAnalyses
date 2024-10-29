@@ -1,0 +1,19 @@
+
+
+--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01b_DP/populations.106757snps.680ind.all.recode.vcf --recode --max-missing 0.9 --out ./00_Data/01_Filtering.ref/01_Bringloe/01c_MissingData/populations.92115snps.680ind.all
+
+
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01b_DP/populations.106757snps.680ind.all.recode.vcf
+	--max-missing 0.9
+	--out ./00_Data/01_Filtering.ref/01_Bringloe/01c_MissingData/populations.92115snps.680ind.all
+	--recode
+
+After filtering, kept 680 out of 680 Individuals
+Outputting VCF file...
+After filtering, kept 92379 out of a possible 106757 Sites
+Run Time = 77.00 seconds

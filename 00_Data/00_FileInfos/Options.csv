@@ -1,0 +1,7 @@
+"x";"value"
+"info.path";"../MOBELS_PopStructure_ddRAD_MS_PopGenAnalyses/00_Data/00_FileInfos"
+"stacks.ref.path.bringloe.all";"../MOBELS_PopStructure_ddRAD_MS_PopGenAnalyses/00_Data/05b_Stacks.ref/01_Bringloe_22xii22/00_all"
+"stacks.ref.path.bringloe.popgen";"../MOBELS_PopStructure_ddRAD_MS_PopGenAnalyses/00_Data/05b_Stacks.ref/01_Bringloe_22xii22/01_popgen"
+"filter.ref.path.bringloe";"./00_Data/01_Filtering.ref/01_Bringloe"
+"stacks.ref.log.bringloe.all";"../MOBELS_PopStructure_ddRAD_MS_PopGenAnalyses/02_Results/00_Stacks/05b_Stacks.ref/01_Bringloe_22xii22/00_all"
+"stacks.ref.log.bringloe.popgen";"../MOBELS_PopStructure_ddRAD_MS_PopGenAnalyses/02_Results/00_Stacks/05b_Stacks.ref/01_Bringloe_22xii22/01_popgen"

@@ -1,0 +1,7 @@
+*.vcf
+*.bed
+*.bim
+*.nosex
+*.tfam
+*.tped
+!.gitignore

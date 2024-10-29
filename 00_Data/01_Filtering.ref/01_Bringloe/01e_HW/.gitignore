@@ -1,0 +1,4 @@
+*.vcf
+*.Rdata
+*.data
+!.gitignore

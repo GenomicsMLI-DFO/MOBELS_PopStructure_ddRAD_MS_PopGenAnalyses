@@ -1,0 +1,36 @@
+
+
+--cv /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/03b_ddRAD_Bringloe/populations.26019snps.41ind.jam.recode.bed 1 -j8
+
+
+****                   ADMIXTURE Version 1.3.0                  ****
+****                    Copyright 2008-2015                     ****
+****           David Alexander, Suyash Shringarpure,            ****
+****                John  Novembre, Ken Lange                   ****
+****                                                            ****
+****                 Please cite our paper!                     ****
+****   Information at www.genetics.ucla.edu/software/admixture  ****
+
+Cross-validation will be performed.  Folds=5.
+Parallel execution requested.  Will use 8 threads.
+Random seed: 43
+Point estimation method: Block relaxation algorithm
+Convergence acceleration algorithm: QuasiNewton, 3 secant conditions
+Point estimation will terminate when objective function delta < 0.0001
+Estimation of standard errors disabled; will compute point estimates only.
+Size of G: 41x26019
+Performing five EM steps to prime main algorithm
+1 (EM) 	Elapsed: 0.05	Loglikelihood: -793896	(delta): 1.3221e+06
+2 (EM) 	Elapsed: 0.034	Loglikelihood: -793896	(delta): 0
+3 (EM) 	Elapsed: 0.031	Loglikelihood: -793896	(delta): 0
+4 (EM) 	Elapsed: 0.034	Loglikelihood: -793896	(delta): 0
+5 (EM) 	Elapsed: 0.03	Loglikelihood: -793896	(delta): 0
+Initial loglikelihood: -793896
+Starting main algorithm
+1 (QN/Block) 	Elapsed: 0.091	Loglikelihood: -793896	(delta): -1.16415e-10
+2 (QN/Block) 	Elapsed: 0.097	Loglikelihood: -793896	(delta): 1.16415e-10
+Summary: 
+Converged in 2 iterations (0.397 sec)
+Loglikelihood: -793896.241658
+CV error (K=1): 0.48565
+Writing output files.

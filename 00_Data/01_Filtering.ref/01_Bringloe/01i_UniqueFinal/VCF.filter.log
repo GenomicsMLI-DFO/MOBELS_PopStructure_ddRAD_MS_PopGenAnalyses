@@ -1,0 +1,19 @@
+
+
+--vcf ./00_Data/01_Filtering.ref/01_Bringloe//01h_Relatedness/populations.88433snps.638ind.H06.all.recode.vcf --recode --snps /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01i_UniqueFinal/Loc.H06.DP.unique.final.csv --out /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01i_UniqueFinal/populations.60102snps.639ind.single.final
+
+
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf ./00_Data/01_Filtering.ref/01_Bringloe//01h_Relatedness/populations.88433snps.638ind.H06.all.recode.vcf
+	--out /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01i_UniqueFinal/populations.60102snps.639ind.single.final
+	--recode
+	--snps /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01i_UniqueFinal/Loc.H06.DP.unique.final.csv
+
+After filtering, kept 638 out of 638 Individuals
+Outputting VCF file...
+After filtering, kept 60102 out of a possible 88433 Sites
+Run Time = 48.00 seconds

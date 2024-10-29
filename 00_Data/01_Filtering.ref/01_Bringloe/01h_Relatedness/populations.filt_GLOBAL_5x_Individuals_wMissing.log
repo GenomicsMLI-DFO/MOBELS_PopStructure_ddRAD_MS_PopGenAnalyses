@@ -1,0 +1,17 @@
+
+
+--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01g_Sex/populations.88433snps.677ind.H06.all.recode.vcf --missing-indv
+
+
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/./00_Data/01_Filtering.ref/01_Bringloe/01g_Sex/populations.88433snps.677ind.H06.all.recode.vcf
+	--missing-indv
+
+After filtering, kept 677 out of 677 Individuals
+Outputting Individual Missingness
+After filtering, kept 88433 out of a possible 88433 Sites
+Run Time = 6.00 seconds

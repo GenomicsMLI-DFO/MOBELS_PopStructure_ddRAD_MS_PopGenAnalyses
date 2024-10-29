@@ -1,0 +1,17 @@
+
+
+--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/00_Data/03b_ddRAD_Bringloe/populations.26019snps.497ind.pan.recode.vcf --het
+
+
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /media/genyoda/Extra_Storage/Projets/MOBELS/Beluga_PopStructure_Global/00_Data/03b_ddRAD_Bringloe/populations.26019snps.497ind.pan.recode.vcf
+	--het
+
+After filtering, kept 497 out of 497 Individuals
+Outputting Individual Heterozygosity
+After filtering, kept 26019 out of a possible 26019 Sites
+Run Time = 1.00 seconds

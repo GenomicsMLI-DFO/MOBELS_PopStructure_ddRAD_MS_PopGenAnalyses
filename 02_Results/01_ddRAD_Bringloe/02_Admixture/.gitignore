@@ -1,0 +1,9 @@
+02a_all_SNPs/*.P
+02a_all_SNPs/*.Q
+02b_neutral_SNPs/*.P
+02b_neutral_SNPs/*.Q
+02c_all_SNPs_HBSC/*.P
+02c_all_SNPs_HBSC/*.Q
+02d_all_SNPs_JAM/*.P
+02d_all_SNPs_JAM/*.Q
+!.gitignore
