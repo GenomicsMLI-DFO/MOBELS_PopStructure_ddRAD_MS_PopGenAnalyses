@@ -9,18 +9,18 @@ options(scipen = 999)
 
 ## Upload -----------------------------------------------------------------
 data.rad <- read.csv("./00_Data/02_Dataset/MOBELS-S_20_00703-Beluga-ddRADseq-Metadata+K5_19ix23.csv")
-data.wgs <- read.csv("./00_Data/02_Dataset/MOBELS_WGS_230714.csv")
-data.wgs.mt <- read.csv("./00_Data/02_Dataset/MOBELS-mitogenomes-lcWGS-PCA-20ix23.csv", na.string = c("","NA"))
+data.wgs <- read.csv("./00_Data/02_Dataset/lcWGS/MOBELS_WGS_230717.csv")
+data.wgs.mt <- read.csv("./00_Data/02_Dataset/lcWGS/MOBELS-mitogenomes-lcWGS-PCA-20ix23.csv", na.string = c("","NA"))
 
 # meta.rad.red <- read.csv("./00_Data/03b_ddRAD_Bringloe/Beluga_ddRAD_analyses.csv", stringsAsFactors = F)
-res.wgs.admx.het <- read.csv("./02_Results/01b_ddRAD_Bringloe/02_Admixture/MOBELS-S_20_00703-Beluga-lcWGS-Metadata+K6+Het-19ix23.csv")
+res.wgs.admx.het <- read.csv("./02_Results/01_ddRAD_Bringloe/02_Admixture/lcWGS/MOBELS-S_20_00703-Beluga-lcWGS-Metadata+K6+Het-19ix23.csv")
 # res.wgs.admx.pan <- read.csv("./02_Results/01b_ddRAD_Bringloe/02_Admixture/MOBELS-S_20_00703-Beluga-lcWGS-admixture-PAN-17vii23.csv")
 # res.wgs.admx.jam <- read.csv("./02_Results/01b_ddRAD_Bringloe/02_Admixture/MOBELS-S_20_00703-Beluga-lcWGS-admixture-JAM-BEL-17vii23.csv")
 
-res.rad.admx <- read.csv("./02_Results/01b_ddRAD_Bringloe/02_Admixture/Beluga_ddRAD_meta_admixture_neutral_K5.csv")
+res.rad.admx <- read.csv("./02_Results/01_ddRAD_Bringloe/02_Admixture/02b_neutral_SNPs/Beluga_ddRAD_meta_admixture_neutral_K5.csv")
 # res.rad.admx.pan <- read.csv("./02_Results/01b_ddRAD_Bringloe/02_Admixture/Beluga_ddRAD_meta_admixture_PAN_K3.csv")
 # res.rad.admx.jam <- read.csv("./02_Results/01b_ddRAD_Bringloe/02_Admixture/Beluga_ddRAD_meta_admixture_JAM_K2.csv")
-res.rad.het <- read.delim("./02_Results/01b_ddRAD_Bringloe/04_Heterozygosity/04a_all/out.het", skip=0, sep = "\t", header = T )
+res.rad.het <- read.delim("./02_Results/01_ddRAD_Bringloe/04_Heterozygosity/04b_neutral_SNPs/out.het", skip=0, sep = "\t", header = T )
 
 
 ## Keep popgen samples only -----------------------------------------------
@@ -28,22 +28,19 @@ res.rad.het <- read.delim("./02_Results/01b_ddRAD_Bringloe/04_Heterozygosity/04a
 d.rad <- data.rad %>% mutate(ID_GQ = ifelse(duplicated(Numero_unique_specimen), paste0(Numero_unique_specimen, "_rep"),Numero_unique_specimen),
                              ID_GQ = ifelse(duplicated(ID_GQ), paste0(ID_GQ, "_1"), ID_GQ)) %>%  # update names of duplicated (triplicated) specimens
   filter(ID_GQ %in% res.rad.admx$ID_GQ) %>%  # keep only specimens used for popgen analyses
-  select(ID_GQ, BioSample.Acession, Type_analyse, Sexe_laboratoire, Age, Region_echantillonnage, Lieu_echantillonnage, Latitude_echantillonnage_DD,
-        Longitude_echantillonnage_DD, Annee_echantillonnage, Mois_echantillonnage, Jour_echantillonnage) %>% 
+  select(ID_GQ, BioSample.Acession, Type_analyse, Sexe_laboratoire, Age, Region_echantillonnage, Lieu_echantillonnage, Annee_echantillonnage, Mois_echantillonnage, Jour_echantillonnage) %>% 
   mutate(Type_analyse = ifelse(gsub("_rep.*", "", ID_GQ) %in% res.wgs.admx.het$ID, "Both", Type_analyse),
-         Sexe_laboratoire = ifelse(Sexe_laboratoire %in% "U", NA, Sexe_laboratoire)) %>% 
-  transform(Latitude_echantillonnage_DD = as.numeric(Latitude_echantillonnage_DD),
-            Longitude_echantillonnage_DD = as.numeric(Longitude_echantillonnage_DD))
-colnames(d.rad) <- c("ID","BioSample.Accession","Marker","Sex.qPCR","Age","Region","Location","Lat","Lon","Year","Month","Day")
+         Sexe_laboratoire = ifelse(Sexe_laboratoire %in% "U", NA, Sexe_laboratoire))
+colnames(d.rad) <- c("ID","BioSample.Accession","Marker","Sex.qPCR","Age","Region","Location","Year","Month","Day")
 View(d.rad)
 str(d.rad)
 
-d.wgs <- res.wgs.admx.het %>% select(ID, BioSample.Accession, mitogenome.accession, Sex.qPCR, Age, Region, Location, Lat, Lon, Year, Month, Day, 
+d.wgs <- res.wgs.admx.het %>% select(ID, BioSample.Accession, mitogenome.accession, Sex.qPCR, Age, Region, Location, Year, Month, Day, 
                                      Membership, Q1, Q2, Q3, Q4, Q5, Q6, O.HOM., E.HOM., 'F') %>% 
   mutate(Marker = ifelse(ID %in% gsub("_rep.*", "", d.rad$ID), "Both", "lcWGS")) %>% 
   left_join(data.wgs.mt %>% filter(!is.na(SampleID)) %>% select(SampleID,Mitochondrial.clade), by = c("ID"="SampleID"))
-colnames(d.wgs)[c(2:3,5,13:22)] <- c("BioSample.Accession","Mitogenome.accession","Age","Membership.wgs","Q1.wgs","Q2.wgs","Q3.wgs",
-                                     "Q4.wgs","Q5.wgs","Q6.wgs","O.Hom.wgs","E.Hom.wgs","F.wgs")
+colnames(d.wgs)[c(2:3,11:20)] <- c("BioSample.Accession","Mitogenome.accession","Membership.wgs","Q1.wgs","Q2.wgs","Q3.wgs",
+                                   "Q4.wgs","Q5.wgs","Q6.wgs","O.Hom.wgs","E.Hom.wgs","F.wgs")
 View(d.wgs)
 str(d.wgs)
 
@@ -51,66 +48,51 @@ str(d.wgs)
 ## Include results --------------------------------------------------------
 
 d.rad <- d.rad %>% left_join(res.rad.admx %>% select(ID_GQ,Membership.neutral,Q1,Q2,Q3,Q4,Q5), by = c("ID"="ID_GQ")) %>% 
-  # left_join(res.rad.admx.pan %>% select(ID_GQ,Q1,Q2,Q3), by = c("ID"="ID_GQ")) %>%  # Membership.pan
-  # left_join(res.rad.admx.jam %>% select(ID_GQ,Q1,Q2), by = c("ID"="ID_GQ")) %>%  # Membership.jam
   left_join(res.rad.het %>% select(INDV,O.HOM.,E.HOM.,'F'), by = c("ID"="INDV"))
-colnames(d.rad)[c(13:21)] <- c("Membership.rad","Q1.rad","Q2.rad","Q3.rad","Q4.rad","Q5.rad",
+colnames(d.rad)[c(11:19)] <- c("Membership.rad","Q1.rad","Q2.rad","Q3.rad","Q4.rad","Q5.rad",
                                "O.Hom.rad","E.Hom.rad","F.rad")
-# colnames(d.rad)[c(13:26)] <- c("Membership.rad.all","Q1.rad.all","Q2.rad.all","Q3.rad.all","Q4.rad.all","Q5.rad.all",#"Membership.rad.hbsc",
-#                                "Q1.rad.hbsc","Q2.rad.hbsc","Q3.rad.hbsc",#"Membership.rad.jam",
-#                                "Q1.rad.jam","Q2.rad.jam",
-#                                "O.Hom.rad","E.Hom.rad","F.rad")
-# Not specifying membership within hbsc and jam-bel clusters since less clear threshold to define subclusters than for main clusters
 str(d.rad)
-
-# d.wgs <- d.wgs %>% left_join(res.wgs.admx.pan %>% filter(K %in% 2) %>% select(Sample_ID,Q1,Q2), by = c("ID"="Sample_ID")) %>% 
-  # left_join(res.wgs.admx.jam %>% filter(K %in% 2) %>% select(SampleID,Q1,Q2), by = c("ID"="SampleID")) #%>% 
-#  mutate(Membership.wgs.hbsc = ifelse())  # Not specifying membership within hbsc and jam-bel clusters
-colnames(d.wgs)[c(13:19)] <- c("Membership.wgs","Q1.wgs","Q2.wgs","Q3.wgs","Q4.wgs","Q5.wgs","Q6.wgs")
-
 
 
 ## Combine tables ---------------------------------------------------------
 
-d <- d.rad %>% full_join(d.wgs, by = c("ID","Marker","BioSample.Accession","Sex.qPCR","Age","Region","Location","Lat","Lon","Year","Month","Day")) %>% 
-  select(1,3,2,22,33,4:13,23,14:18,24:29,19:21,30:32) %>% 
+d <- d.rad %>% full_join(d.wgs, by = c("ID","Marker","BioSample.Accession","Sex.qPCR","Age","Region","Location","Year","Month","Day")) %>% 
+  select(1,3,2,20,31,4:11,21,12:16,22:27,17:19,28:30) %>% 
   mutate(Region = gsub("SAN", "BEL", Region),
          Region = gsub("LON", "JAM", Region),
          Region = gsub("CSB", "CS", Region)) %>% 
   mutate(Membership.rad = ifelse(is.na(Membership.rad), NA,
                                  ifelse(Membership.rad %in% "PAN", "HBSC",
-                                        ifelse(Membership.rad %in% "CSB", "CS", Membership.rad))), 
+                                        ifelse(Membership.rad %in% "CSB", "CS", 
+                                               ifelse(Membership.rad %in% "JAM", "JB",
+                                                      Membership.rad)))), 
          Membership.wgs = ifelse(is.na(Membership.wgs), NA,
                                  ifelse(Membership.wgs %in% "CBS", "CS",
                                         ifelse(Membership.wgs %in% c("PAN","WHB"), "HBSC",
-                                               ifelse(Membership.wgs %in% "JAM-BEL", "JAM", Membership.wgs))))) %>%
-  # mutate(Membership.rad.hbsc = ifelse(is.na(Membership.rad.hbsc), NA,
-  #                                     ifelse(Membership.rad.hbsc %in% "SEH", "SEHB",
-  #                                            ifelse(Membership.rad.hbsc %in% "BEL-WHB", "BEL-NWHB",
-  #                                                   "HBSC")))) %>% 
+                                               ifelse(Membership.wgs %in% "JAM-BEL", "JB", Membership.wgs))))) %>%
   transform(Region = factor(Region, levels = c("SLE","CS","FRB","UNG","NHS","SHS","NEH","SEH","BEL","LON","JAM","SWH","NWH","NHB","RES"))) %>% 
   arrange(Region, ID)
 str(d)
 
 d <- d %>% 
   mutate(Region = ifelse(Region %in% "SLE", "Saint Lawrence",
-                  ifelse(Region %in% "CS", "Cumberland Sound",
-                  ifelse(Region %in% "FRB", "Frobisher Bay",
-                  ifelse(Region %in% "UNG", "Ungava Bay",
-                  ifelse(Region %in% "NHS", "North Hudson Strait",
-                  ifelse(Region %in% "SHS", "South Hudson Strait",
-                  ifelse(Region %in% "NEH", "North East Hudson Bay",
-                  ifelse(Region %in% "SEH", "South East Hudson Bay",
-                  ifelse(Region %in% "BEL", "Belcher Islands",
-                  ifelse(Region %in% "JAM", "James Bay",
-                  ifelse(Region %in% "SWH", "South West Hudson Bay",
-                  ifelse(Region %in% "NWH", "North Western Hudson Bay",
-                  ifelse(Region %in% "NHB", "North Hudson Bay",
-                  ifelse(Region %in% "RES", "Resolute Bay",
-                         NA)))))))))))))))
+                         ifelse(Region %in% "CS", "Cumberland Sound",
+                                ifelse(Region %in% "FRB", "Frobisher Bay",
+                                       ifelse(Region %in% "UNG", "Ungava Bay",
+                                              ifelse(Region %in% "NHS", "North Hudson Strait",
+                                                     ifelse(Region %in% "SHS", "South Hudson Strait",
+                                                            ifelse(Region %in% "NEH", "North East Hudson Bay",
+                                                                   ifelse(Region %in% "SEH", "South East Hudson Bay",
+                                                                          ifelse(Region %in% "BEL", "Belcher Islands",
+                                                                                 ifelse(Region %in% "JAM", "James Bay",
+                                                                                        ifelse(Region %in% "SWH", "South West Hudson Bay",
+                                                                                               ifelse(Region %in% "NWH", "North Western Hudson Bay",
+                                                                                                      ifelse(Region %in% "NHB", "North Hudson Bay",
+                                                                                                             ifelse(Region %in% "RES", "Resolute Bay",
+                                                                                                                    NA)))))))))))))))
 
 
-# write.csv(d, file = "./00_Data/02_Dataset/TableS1_240709.csv", row.names = F)
+# write.csv(d, file = "./00_Data/02_Dataset/TableS1_241030.csv", row.names = F)
 
 table(d$Marker)
 
